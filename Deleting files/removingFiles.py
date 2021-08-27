@@ -4,8 +4,10 @@ import time
 
 def main():
 	path = "/deleting_path"
-	days = 30
-	seconds = time.time() - (days * 24 * 60 * 60)
+	#days = 30
+	#seconds = time.time() - (days * 24 * 60 * 60)
+	minutes = 1
+	seconds = time.time() - (minutes * 60)
 
 	if os.path.exists(path):
 		for main_folder, folders, files in os.walk(path):
@@ -16,15 +18,10 @@ def main():
 					folder_path = os.path.join(main_folder, folder)
 					if seconds >= get_age(folder_path):
 						remove_folder(folder_path)
-
 				for file in files:
 					file_path = os.path.join(main_folder, file)
 					if seconds >= get_age(file_path):
 						remove_file(file_path)
-		else:
-			if seconds >= get_file_or_folder_age(path):
-				remove_file(path)
-
 	else:
         print('The path is not found')
 
